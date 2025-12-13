@@ -1,1 +1,2 @@
-My name is Harish and I am very interested to learn about ML/AI
+My name is Harish and I am very interested to learn about ML/AI. 
+I want to learn from UCB ML Class to master my ML/AI Skills
