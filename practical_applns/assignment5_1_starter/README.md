@@ -50,6 +50,9 @@ in determines whether a customer will accept the coupon or not.
 | **Time Before Expiry** | 2 hours, 1 day  |
 
 ### ANALYSIS RESULTS: 
+
+**Notebook Link:** https://github.com/Harish7882/UCB_ML_CLASS/blob/main/practical_applns/assignment5_1_starter/prompt.ipynb
+
 ##### Summary: 
 The overall acceptance is 57% indicating a positive response signal from drivers towards the coupon program. Frequent visits to the place seems to have a very positive effect on acceptance. Who is in the car with the driver also has an impact on the acceptance: Driving with Kids have a -ve impact (20% acceptance) on Bar Coupons whereas having Friends has the highest probability of acceptance (57%). 
 
