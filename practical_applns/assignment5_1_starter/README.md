@@ -54,7 +54,7 @@ in determines whether a customer will accept the coupon or not.
 **Notebook Link:** https://github.com/Harish7882/UCB_ML_CLASS/blob/main/practical_applns/assignment5_1_starter/prompt.ipynb
 
 ##### Summary: 
-The overall acceptance is 57% indicating a positive response signal from drivers towards the coupon program. Frequent visits to the place seems to have a very positive effect on acceptance. Who is in the car with the driver also has an impact on the acceptance: Driving with Kids have a -ve impact (20% acceptance) on Bar Coupons whereas having Friends has the highest probability of acceptance (57%). 
+The overall acceptance is 57% indicating a positive response signal from drivers towards the coupon program. Frequent visits to the place seems to have a positive effect on acceptance across all coupon types. Depending on type of coupon, other factors play a significant role on drivers accepting vs not. For e.g. Who is in the car with the driver also has an impact on the acceptance of `Bar` coupons: Driving with Kids have a -ve impact (20% acceptance) whereas having Friends has the highest probability of acceptance (57%). 
 
 But as you can see in the below chart, Acceptance Rates can vary based on the Coupon Type. It looks like coupons for lower cost places tend to be accepted more than higher end places. This demands seperate analysis may need to be performed for each Coupon Type to determine what factors influence their acceptance rate.
 
@@ -62,6 +62,7 @@ But as you can see in the below chart, Acceptance Rates can vary based on the Co
 
 
 #### Key Findings: 
+As an exploration, I analyzed the data for two coupon types from the extreme ends of the acceptance range (Bar and Carryaway) to see what factors influence them. 
 
 **Bar Coupon**
 
@@ -82,4 +83,7 @@ But as you can see in the below chart, Acceptance Rates can vary based on the Co
 5. People are accepting coupons more during `Mid Afternoon` and `Evening` (over 80%) compared to early morning (66%) and mid morning (70%).
 6. People are preferring coupons that has a longer expiry time window (1D validity over 2H validity).
 7. "Widowers" are suprisingly accepting these coupons more (85%) than other cohorts - even Single people (75%).
+
+#### Next Steps: 
+Similar analysis can be done for other coupon types to determine what fators play a role in their acceptance rates. Then we could think abt developing models for predicting acceptance for each of them and develop a recommender system on top of it to pick the best coupon to present to the driver for maximizing acceptance. 
 
