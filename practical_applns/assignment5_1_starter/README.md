@@ -84,6 +84,6 @@ As an exploration, I analyzed the data for two coupon types from the extreme end
 6. People are preferring coupons that has a longer expiry time window (1D validity over 2H validity).
 7. "Widowers" are suprisingly accepting these coupons more (85%) than other cohorts - even Single people (75%).
 
-#### Next Steps: 
+### Next Steps: 
 Similar analysis can be done for other coupon types to determine what fators play a role in their acceptance rates. Then we could think abt developing models for predicting acceptance for each of them and develop a recommender system on top of it to pick the best coupon to present to the driver for maximizing acceptance. 
 
