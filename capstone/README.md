@@ -12,7 +12,7 @@ Today, most e-commerce platforms show every customer the same “top sellers” 
 *“Can a personalized recommendation system, built using collaborative filtering and customer segmentation, meaningfully outperform a non-personalized baseline in predicting the next best product for e-commerce users and which user segments benefit most from personalization?”* 
 
 ### Data Sources
-The dataset is sourced from Kaggle and contains 150,000 user interaction records. It includes 5,000 unique users and 2,000 products. Key features include User ID, Item ID, Item Category, User Rating (1.0-5.0), Interaction Timestamp, Item Price, Platform (Web, Mobile App, Smart TV, Tablet), and Continent-level Location.
+The dataset is sourced from [Kaggle](https://www.kaggle.com/datasets/alfarisbachmid/personalized-recommendation-systems-dataset) and contains 150,000 user interaction records. It includes 5,000 unique users and 2,000 products. Key features include User ID, Item ID, Item Category, User Rating (1.0-5.0), Interaction Timestamp, Item Price, Platform (Web, Mobile App, Smart TV, Tablet), and Continent-level Location.
 
 ### Methodology
 1. **Exploratory Data Analysis & Cleaning:** Handling missing values, removing duplicates, feature extraction from timestamps, and identifying outliers in pricing.
@@ -30,7 +30,7 @@ The dataset is sourced from Kaggle and contains 150,000 user interaction records
 * Train a **Gradient Boosting** model to predict ratings and compare its performance to the baseline Linear Regression model.
 
 ### Outline of Project
-* 
+* [Project EDA Link](https://github.com/Harish7882/UCB_ML_CLASS/blob/main/capstone/harish_capstone_recommendation.ipynb)
 
 ### Contact and Further Information
 For further information, please contact Harish Ramakrishnan or visit the GitHub repository.
