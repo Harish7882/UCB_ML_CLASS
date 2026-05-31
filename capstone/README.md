@@ -2,7 +2,39 @@
 
 **Author:** Harish Ramakrishnan
 **Course:** UC Berkeley Professional Certificate — Machine Learning & Artificial Intelligence
-**Notebook:** [`harish_capstone_recommendation.ipynb`](./harish_capstone_recommendation.ipynb)
+
+> **Why this README (V2)?** The analysis was originally a single large notebook
+> (`harish_capstone_recommendation.ipynb`). Because that file is large (many embedded
+> figures), it can fail to render in GitHub's notebook viewer. To make the work easy to
+> read on GitHub *and* easy to run, the same analysis is now split into **three smaller,
+> sequential notebooks**. This README explains that layout. The original single notebook
+> is kept unchanged for reference.
+
+---
+
+### The 3-Part Notebook Layout
+
+Read the notebooks **in order** — they form one continuous analysis and are meant to be
+run **top-to-bottom in the same Jupyter session** (Part 3 reuses objects built in Part 2).
+All cell outputs from the original run are preserved, so each notebook renders fully on
+GitHub without re-execution.
+
+| # | Notebook | Sections | What it covers |
+|---|----------|----------|----------------|
+| 1 | [`harish_capstone_part1_eda.ipynb`](./harish_capstone_part1_eda.ipynb) | §1–3 | Imports, data load, and **Exploratory Data Analysis** — shape, quality, distributions, sparsity, temporal patterns, and the rating target. *Self-contained.* |
+| 2 | [`harish_capstone_part2_modeling.ipynb`](./harish_capstone_part2_modeling.ipynb) | §4–7 | Feature engineering, **context-only baselines**, **Funk SVD** collaborative filtering (with grid search + convergence), ranking evaluation, and **K-Means user segmentation**. *Self-contained — re-loads the data.* |
+| 3 | [`harish_capstone_part3_regression_conclusions.ipynb`](./harish_capstone_part3_regression_conclusions.ipynb) | §8–9 | **Supervised rating regression** (Linear / Ridge / RF / Gradient Boosting) with grid search and feature-importance analysis, plus the **final model comparison and conclusions**. *Continues from Part 2's session.* |
+
+```
+Part 1 — EDA  ──▶  Part 2 — Modeling (baselines, SVD, segmentation)  ──▶  Part 3 — Regression & conclusions
+   (standalone)            (standalone)                                       (runs after Part 2)
+```
+
+**How to run.** Open Part 1 and run all cells; then Part 2; then Part 3 — keeping the
+same kernel running so Part 3 inherits the SVD model, user segments, and train/test splits
+from Part 2. For viewing only, just open any part on GitHub; the saved outputs render as-is.
+
+> The original combined notebook — [`harish_capstone_recommendation.ipynb`](./harish_capstone_recommendation.ipynb) — remains available and contains the identical analysis end-to-end.
 
 ---
 
@@ -10,16 +42,16 @@
 
 **Project overview and goals.** Most e-commerce platforms show every visitor the *same* "top sellers" or "trending now" list. That generic experience leaves money on the table — customers can't find what is relevant to them, which means missed sales, weaker engagement, and higher churn. This project designs and evaluates a **personalized recommendation system** that predicts the *next best product* for each user, and asks a sharp question: **does personalization actually beat a non-personalized baseline, and which customers benefit most?**
 
-To answer that, the project builds three complementary models on a 150,000-interaction dataset:
-1. **Collaborative filtering** — Funk SVD matrix factorization (via `scikit-surprise`) vs. global-mean and item-popularity baselines.
-2. **User segmentation** — K-Means on behavioral features to find actionable customer groups.
-3. **Supervised rating regression** — Linear / Ridge / Random Forest / Gradient Boosting with cross-validation and driver analysis.
+To answer that, the project builds three complementary models on a 150,000-interaction dataset (each maps to a notebook part):
+1. **Collaborative filtering** — Funk SVD matrix factorization (via `scikit-surprise`) vs. global-mean and item-popularity baselines. *(Part 2)*
+2. **User segmentation** — K-Means on behavioral features to find actionable customer groups. *(Part 2)*
+3. **Supervised rating regression** — Linear / Ridge / Random Forest / Gradient Boosting with cross-validation and driver analysis. *(Part 3)*
 
 **Findings.** The headline result is nuanced and honest. On **rating prediction**, adding user/item history features lifts RMSE from the context-only baseline (1.1535) to **1.127 (Ridge / Gradient Boosting), a ~2.2% improvement** — and the two strongest drivers are `item_avg_rating` and `user_avg_rating`, exactly the collaborative signal a generic model lacks. On **ranking** (the metric that matters for "next-best product"), Funk SVD did **not** beat item popularity on this particular dataset (SVD NDCG@10 = 0.0023 vs. popularity 0.0048). The reason is diagnostic, not a bug: the dataset's ratings are **uniformly distributed on [1, 5]** with no natural popularity skew, so there is little collaborative structure for SVD to exploit. On real e-commerce data (power-law popularity, clustered ratings), matrix factorization is well documented to beat popularity baselines by 10–20%.
 
 ![Master RMSE comparison](images/master_rmse.png)
 
-**Results and conclusion.** K-Means identified **4 behavioral segments**, and personalization lift is **not uniform** across them — confirming that a one-size-fits-all recommender is the wrong design. The practical recommendation is a **hybrid operating model**: serve SVD to warm users with history, fall back to segment-aware popularity for cold users, and use the regression model's context features to refine cold-start ordering. A full production deployment design (real-time serving + offline retraining/feedback loop) is included below and in the technical report.
+**Results and conclusion.** K-Means identified **4 behavioral segments**, and personalization lift is **not uniform** across them — confirming that a one-size-fits-all recommender is the wrong design. The practical recommendation is a **hybrid operating model**: serve SVD to warm users with history, fall back to segment-aware popularity for cold users, and use the regression model's context features to refine cold-start ordering.
 
 **Next steps and recommendations.**
 - Move from explicit star ratings to **implicit feedback** (clicks, purchases, dwell time), which reflects what users actually do.
@@ -53,7 +85,7 @@ The dataset is sourced from [Kaggle — Personalized Recommendation Systems Data
 | `Platform` | Device used (Web, Mobile App, Smart TV, Tablet) |
 | `Location` | Continent-level region |
 
-**Exploratory data analysis.** The data is clean — no missing values, no duplicate rows. Ratings are nearly **uniform across 1–5**, and price/category/platform/location/time show **weak correlation with rating**. This is the central EDA insight: the rating signal lives in the **user × item interaction structure**, not in observable context features — which is exactly why collaborative filtering is the right tool and why context-only regression is expected to underperform.
+**Exploratory data analysis (Part 1).** The data is clean — no missing values, no duplicate rows. Ratings are nearly **uniform across 1–5**, and price/category/platform/location/time show **weak correlation with rating**. This is the central EDA insight: the rating signal lives in the **user × item interaction structure**, not in observable context features — which is exactly why collaborative filtering is the right tool and why context-only regression is expected to underperform.
 
 ![EDA distributions](images/eda_distributions.png)
 
@@ -63,16 +95,16 @@ The user × item matrix is **highly sparse** with long-tailed activity, which ju
 
 ### Methodology
 
-The project follows **CRISP-DM** (Business Understanding → Data Understanding → Data Preparation → Modeling → Evaluation → Deployment).
+The project follows **CRISP-DM** (Business Understanding → Data Understanding → Data Preparation → Modeling → Evaluation → Deployment), mapped across the three notebooks.
 
-- **Data preparation.** Parse timestamps; treat `Month` as categorical; one-hot encode categoricals and scale `Price`. Build per-user behavioral features (interaction count, mean/std rating, price sensitivity, category/platform mix) from **training data only** to prevent leakage.
-- **Train/test split.** A **leave-last-out** split holds out each user's *most recent* interaction as the test event — a realistic simulation of "predict the next product" rather than a random 80/20 split. Regression additionally uses **5-fold KFold and GroupKFold** (user-disjoint folds, the production-honest estimate).
-- **Collaborative filtering.** Funk SVD (`scikit-surprise`), with **hyperparameters tuned via grid search** (`GridSearchCV`) and convergence verified by a per-epoch training-RMSE plot.
+- **Data preparation (Parts 1–2).** Parse timestamps; treat `Month` as categorical; one-hot encode categoricals and scale `Price`. Build per-user behavioral features (interaction count, mean/std rating, price sensitivity, category/platform mix) from **training data only** to prevent leakage.
+- **Train/test split (Part 2).** A **leave-last-out** split holds out each user's *most recent* interaction as the test event — a realistic simulation of "predict the next product" rather than a random 80/20 split. Regression additionally uses **5-fold KFold and GroupKFold** (user-disjoint folds, the production-honest estimate).
+- **Collaborative filtering (Part 2).** Funk SVD (`scikit-surprise`), with **hyperparameters tuned via grid search** (`GridSearchCV`) and convergence verified by a per-epoch training-RMSE plot.
 
 ![SVD training convergence](images/svd_convergence.png)
 
-- **Segmentation.** K-Means with `k` chosen via elbow + silhouette, then each segment profiled vs. the population mean to produce human-readable labels.
-- **Supervised regression.** Dummy / Linear / Ridge / Random Forest / Gradient Boosting, with `GridSearchCV` hyperparameter tuning and signed Ridge coefficients + Gradient Boosting importances for interpretability.
+- **Segmentation (Part 2).** K-Means with `k` chosen via elbow + silhouette, then each segment profiled vs. the population mean to produce human-readable labels.
+- **Supervised regression (Part 3).** Dummy / Linear / Ridge / Random Forest / Gradient Boosting, with `GridSearchCV` hyperparameter tuning and signed Ridge coefficients + Gradient Boosting importances for interpretability.
 - **Evaluation metrics.** **RMSE / MAE** for rating prediction, and **Precision@10, Recall@10, HitRate@10, NDCG@10** for ranking — the metric that actually reflects recommendation quality. NDCG is the primary metric because stakeholders care about the *order* of the top-K list, not the decimal rating error.
 
 ### Model Evaluation and Results
@@ -94,20 +126,20 @@ The project follows **CRISP-DM** (Business Understanding → Data Understanding 
 
 ![Segment NDCG comparison](images/segment_ndcg.png)
 
-**What drives ratings.** `item_avg_rating` and `user_avg_rating` dominate both the Ridge coefficients and the Gradient Boosting importances — confirming the track record of the item and the user matters far more than price, category, or platform alone.
+**What drives ratings (Part 3).** `item_avg_rating` and `user_avg_rating` dominate both the Ridge coefficients and the Gradient Boosting importances — confirming the track record of the item and the user matters far more than price, category, or platform alone.
+
 ![Feature importance](images/feature_importance.png)
+
 - **Two features dominate.** `user_avg_rating` and `item_avg_rating` are the top drivers in both models — for Gradient Boosting they account for ~93% of total importance (≈0.66 + 0.27).
 - **Who rates matters more than what is rated.** `user_avg_rating` outranks `item_avg_rating`, so a user's own rating tendency (lenient vs. harsh) is the single strongest signal. Both coefficients are positive, as expected.
 - **Context is effectively noise.** `Price`, `Category`, `Platform`, `Location`, and `Month` contribute almost nothing (Price is the best of them at only ~0.02) — confirming the EDA finding that observable context carries little rating signal.
 - **Cold-start is the key risk.** A new user or new item removes ~93% of the model's signal, which is exactly why the deployment design falls back to segment/popularity until enough history accrues. The practical lesson: invest in interaction history over product metadata.
 
+### Production Deployment
 
-**Production Deployment** 
-The diagram below shows the 
-**real-time serving path**: a customer visits a product page and receives a personalized recommendation row, with a graceful fallback for users who have no history yet.
-**feedback and learning**: how we feed the user activity into the model for training and refitting.
+The diagram below shows the **real-time serving path** — a customer visits a product page and receives a personalized recommendation row, with a graceful fallback for users who have no history yet — and the **feedback/learning loop** that feeds user activity back into model training and refitting.
+
 ![System Architecture](images/production_architecture.png)
-
 
 **Operating model.**
 - **Warm users (≥1 interaction):** serve Funk SVD top-K.
@@ -118,5 +150,8 @@ The diagram below shows the
 ---
 
 ### Outline of Project
-- [Jupyter Notebook — full analysis](./harish_capstone_recommendation.ipynb)
+
+- Part 1 — EDA: [`harish_capstone_part1_eda.ipynb`](./harish_capstone_part1_eda.ipynb)
+- Part 2 — Modeling: [`harish_capstone_part2_modeling.ipynb`](./harish_capstone_part2_modeling.ipynb)
+- Part 3 — Regression & Conclusions: [`harish_capstone_part3_regression_conclusions.ipynb`](./harish_capstone_part3_regression_conclusions.ipynb)
 - [Dataset (Kaggle)](https://www.kaggle.com/datasets/alfarisbachmid/personalized-recommendation-systems-dataset)
