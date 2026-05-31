@@ -3,7 +3,6 @@
 **Author:** Harish Ramakrishnan
 **Course:** UC Berkeley Professional Certificate — Machine Learning & Artificial Intelligence
 **Notebook:** [`harish_capstone_recommendation.ipynb`](./harish_capstone_recommendation.ipynb)
-**Deep-dive technical report:** [`CAPSTONE_REPORT.md`](./CAPSTONE_REPORT.md)
 
 ---
 
