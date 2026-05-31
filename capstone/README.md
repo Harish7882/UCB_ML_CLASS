@@ -38,6 +38,24 @@ from Part 2. For viewing only, just open any part on GitHub; the saved outputs r
 
 ---
 
+### View Rendered Notebooks
+
+If GitHub's notebook preview shows *"An error occurred. Using nbformat… nbconvert…"*, that is a **known GitHub-side rendering outage** — the notebooks are valid and render everywhere else. Use any of the options below.
+
+| Part | Notebook (GitHub) | Open in Colab | Rendered HTML |
+|------|-------------------|---------------|---------------|
+| 1 — EDA | [`part1_eda`](./harish_capstone_part1_eda.ipynb) | [Colab](https://colab.research.google.com/github/Harish7882/UCB_ML_CLASS/blob/main/capstone/harish_capstone_part1_eda.ipynb) | [HTML](https://htmlpreview.github.io/?https://github.com/Harish7882/UCB_ML_CLASS/blob/main/capstone/harish_capstone_part1_eda.html) |
+| 2 — Modeling | [`part2_modeling`](./harish_capstone_part2_modeling.ipynb) | [Colab](https://colab.research.google.com/github/Harish7882/UCB_ML_CLASS/blob/main/capstone/harish_capstone_part2_modeling.ipynb) | [HTML](https://htmlpreview.github.io/?https://github.com/Harish7882/UCB_ML_CLASS/blob/main/capstone/harish_capstone_part2_modeling.html) |
+| 3 — Regression & Conclusions | [`part3_regression_conclusions`](./harish_capstone_part3_regression_conclusions.ipynb) | [Colab](https://colab.research.google.com/github/Harish7882/UCB_ML_CLASS/blob/main/capstone/harish_capstone_part3_regression_conclusions.ipynb) | [HTML](https://htmlpreview.github.io/?https://github.com/Harish7882/UCB_ML_CLASS/blob/main/capstone/harish_capstone_part3_regression_conclusions.html) |
+
+- **Colab** uses its own GitHub fetch and is the most reliable when GitHub's preview is down.
+- **Rendered HTML** are self-contained exports (all figures embedded) committed to this repo; the links above display them via `htmlpreview.github.io`. You can also download the `.html` files and open them in any browser, offline.
+- **nbviewer** is another option: `https://nbviewer.org/github/Harish7882/UCB_ML_CLASS/blob/main/capstone/<notebook>.ipynb` (occasionally returns a transient `503` when its shared GitHub API quota is exhausted).
+
+> The `harish_capstone_part*.html` files must be committed and pushed for the **HTML** links above to resolve.
+
+---
+
 ### Executive Summary
 
 **Project overview and goals.** Most e-commerce platforms show every visitor the *same* "top sellers" or "trending now" list. That generic experience leaves money on the table — customers can't find what is relevant to them, which means missed sales, weaker engagement, and higher churn. This project designs and evaluates a **personalized recommendation system** that predicts the *next best product* for each user, and asks a sharp question: **does personalization actually beat a non-personalized baseline, and which customers benefit most?**
