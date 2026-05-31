@@ -102,6 +102,14 @@ The project follows **CRISP-DM** (Business Understanding → Data Understanding 
 - **Context is effectively noise.** `Price`, `Category`, `Platform`, `Location`, and `Month` contribute almost nothing (Price is the best of them at only ~0.02) — confirming the EDA finding that observable context carries little rating signal.
 - **Cold-start is the key risk.** A new user or new item removes ~93% of the model's signal, which is exactly why the deployment design falls back to segment/popularity until enough history accrues. The practical lesson: invest in interaction history over product metadata.
 
+
+**Production Deployment** 
+The diagram below shows the 
+**real-time serving path**: a customer visits a product page and receives a personalized recommendation row, with a graceful fallback for users who have no history yet.
+**feedback and learning**: how we feed the user activity into the model for training and refitting.
+![System Architecture](images/production_architecture.png)
+
+
 **Operating model.**
 - **Warm users (≥1 interaction):** serve Funk SVD top-K.
 - **Cold users (no history):** fall back to popularity within the user's inferred segment; use Gradient Boosting on observed context (price/category/platform) to refine ordering.
@@ -113,5 +121,3 @@ The project follows **CRISP-DM** (Business Understanding → Data Understanding 
 ### Outline of Project
 - [Jupyter Notebook — full analysis](./harish_capstone_recommendation.ipynb)
 - [Dataset (Kaggle)](https://www.kaggle.com/datasets/alfarisbachmid/personalized-recommendation-systems-dataset)
-
-### Contact and Further Information
