@@ -1,14 +1,8 @@
 ## Personalized Recommendation, Segmentation & Rating Prediction
 
-**Author:** Harish Ramakrishnan
-**Course:** UC Berkeley Professional Certificate — Machine Learning & Artificial Intelligence
-
-> **Why this README (V2)?** The analysis was originally a single large notebook
-> (`harish_capstone_recommendation.ipynb`). Because that file is large (many embedded
-> figures), it can fail to render in GitHub's notebook viewer. To make the work easy to
-> read on GitHub *and* easy to run, the same analysis is now split into **three smaller,
-> sequential notebooks**. This README explains that layout. The original single notebook
-> is kept unchanged for reference.
+- **Author:** Harish Ramakrishnan
+- **Course:** UC Berkeley Professional Certificate — Machine Learning & Artificial Intelligence
+- [Dataset (Kaggle)](https://www.kaggle.com/datasets/alfarisbachmid/personalized-recommendation-systems-dataset)
 
 ---
 
@@ -34,8 +28,6 @@ Part 1 — EDA  ──▶  Part 2 — Modeling (baselines, SVD, segmentation)  �
 same kernel running so Part 3 inherits the SVD model, user segments, and train/test splits
 from Part 2. For viewing only, just open any part on GitHub; the saved outputs render as-is.
 
-> The original combined notebook — [`harish_capstone_recommendation.ipynb`](./harish_capstone_recommendation.ipynb) — remains available and contains the identical analysis end-to-end.
-
 ---
 
 ### View Rendered Notebooks
@@ -46,13 +38,7 @@ If GitHub's notebook preview shows *"An error occurred. Using nbformat… nbconv
 |------|-------------------|---------------|---------------|
 | 1 — EDA | [`part1_eda`](./harish_capstone_part1_eda.ipynb) | [Colab](https://colab.research.google.com/github/Harish7882/UCB_ML_CLASS/blob/main/capstone/harish_capstone_part1_eda.ipynb) | [HTML](https://htmlpreview.github.io/?https://github.com/Harish7882/UCB_ML_CLASS/blob/main/capstone/harish_capstone_part1_eda.html) |
 | 2 — Modeling | [`part2_modeling`](./harish_capstone_part2_modeling.ipynb) | [Colab](https://colab.research.google.com/github/Harish7882/UCB_ML_CLASS/blob/main/capstone/harish_capstone_part2_modeling.ipynb) | [HTML](https://htmlpreview.github.io/?https://github.com/Harish7882/UCB_ML_CLASS/blob/main/capstone/harish_capstone_part2_modeling.html) |
-| 3 — Regression & Conclusions | [`part3_regression_conclusions`](./harish_capstone_part3_regression_conclusions.ipynb) | [Colab](https://colab.research.google.com/github/Harish7882/UCB_ML_CLASS/blob/main/capstone/harish_capstone_part3_regression_conclusions.ipynb) | [HTML](https://htmlpreview.github.io/?https://github.com/Harish7882/UCB_ML_CLASS/blob/main/capstone/harish_capstone_part3_regression_conclusions.html) |
-
-- **Colab** uses its own GitHub fetch and is the most reliable when GitHub's preview is down.
-- **Rendered HTML** are self-contained exports (all figures embedded) committed to this repo; the links above display them via `htmlpreview.github.io`. You can also download the `.html` files and open them in any browser, offline.
-- **nbviewer** is another option: `https://nbviewer.org/github/Harish7882/UCB_ML_CLASS/blob/main/capstone/<notebook>.ipynb` (occasionally returns a transient `503` when its shared GitHub API quota is exhausted).
-
-> The `harish_capstone_part*.html` files must be committed and pushed for the **HTML** links above to resolve.
+| 3 — Regression & Conclusions | [`part3_regression_conclusions`](./harish_capstone_part3_regression_conclusions.ipynb) | [Colab](https://colab.research.google.com/github/Harish7882/UCB_ML_CLASS/blob/main/capstone/harish_capstone_part3_regression_conclusions.ipynb) | [HTML](https://htmlpreview.github.io/?https://github.com/Harish7882/UCB_ML_CLASS/blob/main/capstone/harish_capstone_part3_regression_conclusions.html)
 
 ---
 
@@ -172,4 +158,4 @@ The diagram below shows the **real-time serving path** — a customer visits a p
 - Part 1 — EDA: [`harish_capstone_part1_eda.ipynb`](./harish_capstone_part1_eda.ipynb)
 - Part 2 — Modeling: [`harish_capstone_part2_modeling.ipynb`](./harish_capstone_part2_modeling.ipynb)
 - Part 3 — Regression & Conclusions: [`harish_capstone_part3_regression_conclusions.ipynb`](./harish_capstone_part3_regression_conclusions.ipynb)
-- [Dataset (Kaggle)](https://www.kaggle.com/datasets/alfarisbachmid/personalized-recommendation-systems-dataset)
+
