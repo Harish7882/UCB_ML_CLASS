@@ -244,10 +244,9 @@ The diagram below shows the **real-time serving path** — a customer visits a p
 
 | Artifact | Link |
 |----------|------|
-| Part 1 — EDA | [GitHub notebook](./harish_capstone_part1_eda.ipynb) |
-| Part 2 — Modeling | [GitHub notebook](./harish_capstone_part2_modeling.ipynb) |
-| Part 3 — Regression & Conclusions | [GitHub notebook](./harish_capstone_part3_regression_conclusions.ipynb) |
+| Part 1 — EDA | [`harish_capstone_part1_eda.ipynb`](./harish_capstone_part1_eda.ipynb) |
+| Part 2 — Modeling | [`harish_capstone_part2_modeling.ipynb`](./harish_capstone_part2_modeling.ipynb) |
+| Part 3 — Regression & Conclusions | [`harish_capstone_part3_regression_conclusion.ipynb`](./harish_capstone_part3_regression_conclusions.ipynb) |
 | Combined notebook (local) | [`harish_capstone_recommendation.ipynb`](./harish_capstone_recommendation.ipynb) |
 | Dataset | [Kaggle](https://www.kaggle.com/datasets/alfarisbachmid/personalized-recommendation-systems-dataset) |
 | GitHub repo | [UCB_ML_CLASS](https://github.com/Harish7882/UCB_ML_CLASS) |
-
